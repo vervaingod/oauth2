@@ -12,8 +12,12 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.provider.approval.ApprovalStore;
+import org.springframework.security.oauth2.provider.approval.TokenApprovalStore;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 /**
  * ClassName:
@@ -26,7 +30,7 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @Configuration
 @EnableAuthorizationServer
 @Order(2)
-public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdapter {
+public class OAuthAuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -39,6 +43,36 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
                 .scopes("read_profile", "read_contacts");
     }
 
+    @Autowired
+    @Qualifier("authenticationManagerBean")
+    private AuthenticationManager authenticationManager;
+
+    @Bean
+    public ApprovalStore approvalStore() {
+        TokenApprovalStore store = new TokenApprovalStore();
+        store.setTokenStore(tokenStore());
+        return store;
+    }
+
+    @Bean
+    public TokenStore tokenStore() {
+        return new JwtTokenStore(jwtAccessTokenConverter());
+    }
+
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        jwtAccessTokenConverter.setSigningKey("secret");
+        return jwtAccessTokenConverter;
+    }
+
+
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+        endpoints.tokenStore(tokenStore())
+                .authenticationManager(authenticationManager)
+                .accessTokenConverter(jwtAccessTokenConverter());
+    }
 
 }
 

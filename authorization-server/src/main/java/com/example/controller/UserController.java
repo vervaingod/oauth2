@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
     @RequestMapping("/api/profile")
     public ResponseEntity<UserProfile> profile() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String email = user.getUsername() + "@qq.com";
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        String email = user.getUsername() + "@qq.com";
         UserProfile profile = new UserProfile();
-        profile.setName(user.getUsername());
-        profile.setEmail(email);
+        profile.setName("xjy");
+        profile.setEmail("742749059@qq.com");
         return ResponseEntity.ok(profile);
     }
 }
