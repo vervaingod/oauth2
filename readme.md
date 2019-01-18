@@ -72,4 +72,4 @@ public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
 
 此步用postman模拟，即可得到认证服务器中所得到的资源
 
-![1547800722314](C:\Users\vervain\AppData\Local\Temp\1547800722314.png)
+![1547800948517](C:\Users\vervain\AppData\Local\Temp\1547800948517.png)
