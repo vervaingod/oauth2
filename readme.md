@@ -8,17 +8,17 @@ authorization-server 为认证服务器 端口为8080，client 为客户端 端�
 
 直接获取资源显示没有资源，点击获取token，此时触发：
 
-####（1）客户端将用户导向认证服务器
+#### （1）客户端将用户导向认证服务器
 
 http://localhost:8080/oauth/authorize?client_id=clientApp&response_type=code&redirect_uri=http://localhost:8081/api/profile&scope=read_profile
 
-####（2）用户同意授权
+#### （2）用户同意授权
 
 用户输入用户名，密码登陆后点击授权。本例中用户名为admin 密码为123，配置在了内存中
 
-####（3）此时url跳转到第（1）步的redirect_uri 并携带授权码
+#### （3）此时url跳转到第（1）步的redirect_uri 并携带授权码
 
-####（4）客户端携带授权码申请令牌
+#### （4）客户端携带授权码申请令牌
 
 ```
 String userMsg = "clientApp:secret";
@@ -41,7 +41,7 @@ String token = response.getBody();
 
 cline_id和秘钥在header的Authorization中
 
-####（5）认证服务器发放令牌
+#### （5）认证服务器发放令牌
 
 已使用jwt生成了token
 
