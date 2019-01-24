@@ -29,7 +29,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
-@Order(2)
 public class OAuthAuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
     @Override

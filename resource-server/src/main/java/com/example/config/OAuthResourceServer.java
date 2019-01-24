@@ -25,7 +25,7 @@ public class OAuthResourceServer extends ResourceServerConfigurerAdapter {
         http.authorizeRequests().anyRequest().authenticated().and()
                 .requestMatchers().antMatchers("/api/**");
     }
-
+// 默认的token方式
 //    @Bean
 //    public ResourceServerTokenServices tokenServices() {
 //
@@ -55,9 +55,4 @@ public class OAuthResourceServer extends ResourceServerConfigurerAdapter {
         return converter;
     }
 
-
-    @Override
-    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.resourceId("mip");
-    }
 }
