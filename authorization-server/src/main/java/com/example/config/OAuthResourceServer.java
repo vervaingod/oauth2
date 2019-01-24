@@ -13,13 +13,13 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
  *
  * @author 许嘉阳
  */
-@Configuration
-@EnableResourceServer
-@Order(6)
+//@Configuration
+//@EnableResourceServer
+//@Order(6)
 public class OAuthResourceServer extends ResourceServerConfigurerAdapter {
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated().and()
-                .requestMatchers().antMatchers("/api/**");
-    }
+//    @Override
+//    public void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests().anyRequest().authenticated().and()
+//                .requestMatchers().antMatchers("/api/**");
+//    }
 }

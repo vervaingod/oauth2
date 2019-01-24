@@ -15,8 +15,7 @@
     <modules>
         <module>client</module>
         <module>authorization-server</module>
+        <module>resource-server</module>
     </modules>
-
-
 
 </project>

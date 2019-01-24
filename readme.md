@@ -1,18 +1,24 @@
 # 授权码模式的实现
 
-因为demo较小 并没有将认证服务器和资源服务器分开，client 为客户端。
+authorization-server 为认证服务器 端口为8080，client 为客户端 端口为8081，resource-server 为资源服务器 端口为8082
 
-## 1、客户端将用户导向认证服务器
+授权的流程为 http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html
+
+## 1、访问客户端 http://localhost:8081/get-token.html
+
+直接获取资源显示没有资源，点击获取token，此时触发：
+
+####（1）客户端将用户导向认证服务器
 
 http://localhost:8080/oauth/authorize?client_id=clientApp&response_type=code&redirect_uri=http://localhost:8081/api/profile&scope=read_profile
 
-## 2、用户同意授权
+####（2）用户同意授权
 
 用户输入用户名，密码登陆后点击授权。本例中用户名为admin 密码为123，配置在了内存中
 
-## 3、此时url跳转到第一步的redirect_uri 并携带授权码
+####（3）此时url跳转到第（1）步的redirect_uri 并携带授权码
 
-##4、客户端携带授权码申请令牌
+####（4）客户端携带授权码申请令牌
 
 ```
 String userMsg = "clientApp:secret";
@@ -35,7 +41,7 @@ String token = response.getBody();
 
 cline_id和秘钥在header的Authorization中
 
-## 5、认证服务器发放令牌
+####（5）认证服务器发放令牌
 
 已使用jwt生成了token
 
@@ -68,8 +74,6 @@ public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
 }
 ```
 
-## 6、用户携带token访问资源
+## 2、用户携带token访问资源
 
-此步用postman模拟，即可得到认证服务器中所得到的资源
-
-![1547800948517](C:\Users\vervain\AppData\Local\Temp\1547800948517.png)
+访问 http://localhost:8081/get-resource.html 输入第一步获得的token
