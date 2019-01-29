@@ -36,8 +36,8 @@ public class OAuthAuthorizationServer extends AuthorizationServerConfigurerAdapt
         clients.inMemory()
                 .withClient("clientApp")
                 .secret("secret")
-                .redirectUris("http://localhost:8081/api/profile")
-                .authorizedGrantTypes("authorization_code")
+                .redirectUris("http://localhost:8081/show-token.html")
+                .authorizedGrantTypes("implicit")
                 .authorities("oauth2")
                 .scopes("read_profile", "read_contacts");
     }

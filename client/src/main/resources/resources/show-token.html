@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="application/json;charset=UTF-8"/>
+    <title>简化模式</title>
+</head>
+<body>
+<h2>这个页面用来展示token</h2>
+<script>
+    var show = document.getElementById('show');
+    var result = window.location.hash.split("&");
+    strs = result[0].split("=");
+    token = strs[1];
+    console.log(token);
+    document.write(token);
+</script>
+
+</body>
+</html>
