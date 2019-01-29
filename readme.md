@@ -1,8 +1,12 @@
-# 授权码模式的实现
+# Oauth 2.0 4种模式的实现
 
-authorization-server 为认证服务器 端口为8080，client 为客户端 端口为8081，resource-server 为资源服务器 端口为8082
+authorization-server 为认证服务器 端口为8080，client 为客户端 端口为8081，resource-server 为资源服务器 端口为8082。
 
 授权的流程为 http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html
+
+暂时实现授权码模式和密码模式：密码模式的分支为 password，授权码模式的分支为 authorization-code。   
+
+以下以最复杂的授权码模式为例：
 
 ## 1、访问客户端 http://localhost:8081/get-token.html
 
