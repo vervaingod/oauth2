@@ -42,22 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        String password1 = passwordEncoder.encode("123");
-//        String password2 = passwordEncoder.encode("123456");
-//
-//        auth.inMemoryAuthentication()
-//                .passwordEncoder(passwordEncoder)
-//                .withUser("admin")
-//                .password(password1)
-//                .roles("admin")
-//                .and()
-//                .withUser("user")
-//                .password(password2)
-//                .roles("user");
-//    }
 
     @Bean
     @Override

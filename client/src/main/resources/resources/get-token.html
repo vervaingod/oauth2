@@ -2,14 +2,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>授权码模式</title>
+    <title>密码模式</title>
 </head>
 <body>
 <h2>这个页面用来获取token</h2>
 <table>
     <tr>
         <td>
-            <a href="http://localhost:8080/oauth/authorize?client_id=clientApp&response_type=code&redirect_uri=http://localhost:8081/api/profile&scope=read_profile">
+            <a href="http://localhost:8080/oauth/token?username=admin&password=123&grant_type=password&client_id=clientApp&client_secret=secret&response_type=code&scope=read_profile">
                 点我来获取token</a>
         </td>
     </tr>

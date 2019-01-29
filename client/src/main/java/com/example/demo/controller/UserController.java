@@ -36,33 +36,6 @@ public class UserController {
         return new RestTemplate();
     }
 
-
-
-    @RequestMapping("/api/profile")
-    public String getToken(@RequestParam String code) {
-        RestTemplate restTemplate = new RestTemplate();
-        log.info("receive code {}", code);
-
-        String userMsg = "clientApp:secret";
-        String base64UserMsg = Base64.getEncoder().encodeToString(userMsg.getBytes());
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        headers.add("Authorization", "Basic " + base64UserMsg);
-
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add("client_id", "clientApp");
-        params.add("grant_type", "authorization_code");
-        params.add("code", code);
-        params.add("scope", "read_profile");
-
-        params.add("redirect_uri", "http://localhost:8081/api/profile");
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(params, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:8080/oauth/token", requestEntity, String.class);
-        String token = response.getBody();
-        log.info("token => {}", token);
-        return token;
-    }
-
     @RequestMapping(value = "/userInfo", produces = {
             "application/json;charset=UTF-8"}, method = RequestMethod.POST)
     public String getResource(@RequestParam String token) {
@@ -72,6 +45,7 @@ public class UserController {
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(null, headers);
         ResponseEntity<String> response = restTemplate.exchange("http://localhost:8082/api/profile", HttpMethod.GET, requestEntity, String.class);
         String result = response.getBody();
+        log.info("result=>{}", result);
         return result;
     }
 
