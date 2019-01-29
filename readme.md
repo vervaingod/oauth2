@@ -4,7 +4,7 @@ authorization-server 为认证服务器 端口为8080，client 为客户端 端�
 
 授权的流程为 http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html
 
-暂时实现授权码模式和密码模式：密码模式的分支为 password，授权码模式的分支为 authorization-code。   
+密码模式的分支为 password，授权码模式的分支为 authorization-code，简化模式的分支为 implicit,客户端模式的分支为 client-credentials。   
 
 以下以最复杂的授权码模式为例：
 
